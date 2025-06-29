@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Femboy Touch Game</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="top-bar">
+        <span class="site-title">Femboy Touch Game</span>
+        <div class="top-bar-actions">
+            <button id="theme-toggle-btn" aria-label="Toggle theme">🌙</button>
+            <button id="scroll-down-btn">Scroll Down</button>
+        </div>
+    </div>
+    <div id="game-container" class="game-container">
+        <img id="femboy-character" class="character" src="assets/sprites/femboy1.png" alt="Femboy Character" tabindex="0" />
+        <div id="touch-count" class="touch-count">Touches: 0</div>
+    </div>
+    <div id="second-character-container" class="game-container">
+        <img id="femboy-character-2" class="character" src="assets/sprites/femboy2.png" alt="Femboy Character 2" tabindex="0" />
+        <div id="touch-count-2" class="touch-count">Touches: 0</div>
+    </div>
+    <script src="scripts/game.js"></script>
+</body>
+</html>

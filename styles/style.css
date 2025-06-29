@@ -1,0 +1,194 @@
+:root {
+    --bg: #181825;
+    --fg: #f3f3fa;
+    --card-bg: #232336;
+    --accent: #7f5af0;
+    --accent-hover: #6246ea;
+    --border: #22223b;
+    --shadow: 0 4px 24px rgba(0,0,0,0.18);
+    --topbar-bg: #232336;
+    --topbar-fg: #f3f3fa;
+}
+
+body.light {
+    --bg: #f7f7fb;
+    --fg: #232336;
+    --card-bg: #fff;
+    --accent: #7f5af0;
+    --accent-hover: #6246ea;
+    --border: #e0e0e0;
+    --shadow: 0 4px 10px rgba(0,0,0,0.08);
+    --topbar-bg: #ece9fa;
+    --topbar-fg: #232336;
+}
+
+html, body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    margin: 0;
+    scroll-behavior: smooth;
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+}
+
+.top-bar {
+    width: 100vw;
+    background: var(--topbar-bg);
+    color: var(--topbar-fg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 0 18px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    transition: background 0.3s, color 0.3s;
+    gap: 32px;
+}
+
+.top-bar-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.site-title {
+    font-size: 1.7rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    user-select: none;
+    margin: 0 24px;
+    padding: 0 8px;
+    border-radius: 8px;
+    background: rgba(127,90,240,0.07);
+    color: var(--accent);
+    box-shadow: 0 2px 8px rgba(127,90,240,0.04);
+}
+
+#theme-toggle-btn, #scroll-down-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(127,90,240,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+#theme-toggle-btn {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 1.3rem;
+    margin-right: 8px;
+}
+#theme-toggle-btn:focus, #scroll-down-btn:focus {
+    box-shadow: 0 0 0 3px var(--accent-hover);
+}
+#theme-toggle-btn:hover, #scroll-down-btn:hover {
+    background: var(--accent-hover);
+}
+
+.game-container {
+    text-align: center;
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 20px 28px 20px;
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow);
+    margin: 110px auto 32px auto;
+    max-width: 420px;
+    transition: background 0.3s, border 0.3s, color 0.3s;
+}
+
+.character, #femboy-character, #femboy-character-2 {
+    width: 340px;
+    max-width: 90vw;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+}
+.character:focus {
+    box-shadow: 0 0 0 3px var(--accent);
+}
+#femboy-character:active,
+#femboy-character-2:active {
+    transform: scale(0.95);
+}
+
+.touch-count, #touch-count, #touch-count-2 {
+    font-size: 1.3rem;
+    margin-top: 20px;
+    color: var(--fg);
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.bounce {
+    animation: bounce 0.5s;
+}
+
+@keyframes bounce {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.15); }
+    50%  { transform: scale(0.95); }
+    70%  { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.heart-effect {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    animation: heart-pop 0.8s forwards;
+    z-index: 2;
+    background: none;
+}
+.heart-effect::before, .heart-effect::after {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 8px;
+    width: 16px;
+    height: 24px;
+    background: #ff6fa1;
+    border-radius: 16px 16px 0 0;
+    transform: rotate(-45deg);
+}
+.heart-effect::after {
+    left: 0;
+    transform: rotate(45deg);
+}
+
+@keyframes heart-pop {
+    0% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+    60% {
+        opacity: 1;
+        transform: translate(-50%, -70%) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -120%) scale(0.9);
+    }
+}
