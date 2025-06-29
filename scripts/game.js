@@ -239,6 +239,8 @@ window.addEventListener('DOMContentLoaded', () => {
         if (!canAnimate2) return;
         updateTouchCount2();
         playTouchSound2();
+        clickFx.currentTime = 0;
+        clickFx.play();
         animateCharacter2();
         createHeartEffect(character2);
         showPlusOne(plusOne2);
