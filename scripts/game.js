@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const touchCountDisplay = document.getElementById('touch-count');
     const character = document.getElementById('femboy-character');
     const touchSound = new Audio('assets/sounds/touch.mp3');
+    const clickFx = new Audio('assets/sounds/Clickfx1.mp3');
 
     const touchCountDisplay2 = document.getElementById('touch-count-2');
     const character2 = document.getElementById('femboy-character-2');
@@ -20,7 +21,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const progressHearts = document.getElementById('progress-hearts');
     const progressHearts2 = document.getElementById('progress-hearts-2');
     const HEART_COUNT = 7;
-    const milestones = [10, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500];
+    const milestones = [10, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 600];
 
     // CD
     let canAnimate = true;
@@ -116,7 +117,28 @@ window.addEventListener('DOMContentLoaded', () => {
                 highest = milestone;
             }
         }
-        characterImg.src = milestoneSrc;
+
+        // Only change if different to avoid flicker
+        if (characterImg.src.endsWith(milestoneSrc) || characterImg.src.endsWith(baseImg)) {
+            if (!characterImg.src.endsWith(milestoneSrc)) {
+                characterImg.style.opacity = "0";
+                setTimeout(() => {
+                    characterImg.src = milestoneSrc;
+                    characterImg.onload = () => {
+                        characterImg.style.opacity = "1";
+                    };
+                }, 180);
+            }
+        } else {
+            // Always fade for robustness
+            characterImg.style.opacity = "0";
+            setTimeout(() => {
+                characterImg.src = milestoneSrc;
+                characterImg.onload = () => {
+                    characterImg.style.opacity = "1";
+                };
+            }, 180);
+        }
 
         // Show milestone message
         checkMilestones(count);
@@ -202,11 +224,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Touch/click handlers
     function handleTouch(e) {
-        // Preventing possible double counts
         if (e.type === "touchstart") e.preventDefault();
         if (!canAnimate) return;
         updateTouchCount();
         playTouchSound();
+        clickFx.currentTime = 0;
+        clickFx.play();
         animateCharacter();
         createHeartEffect(character);
         showPlusOne(plusOne);
