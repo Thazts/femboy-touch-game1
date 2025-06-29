@@ -1,5 +1,5 @@
 // Ts file handles touching the femboy fr
-
+//im gonna add sounds later i just have that open for now 
 let touchCount = 0;
 let touchCount2 = 0;
 const touchCountDisplay = document.getElementById('touch-count');
