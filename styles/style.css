@@ -108,6 +108,7 @@ html, body {
     margin: 110px auto 32px auto;
     max-width: 420px;
     transition: background 0.3s, border 0.3s, color 0.3s;
+    position: relative; /* Needed for absolute positioning of .plus-one */
 }
 
 .character, #femboy-character, #femboy-character-2 {
@@ -127,6 +128,36 @@ html, body {
 #femboy-character:active,
 #femboy-character-2:active {
     transform: scale(0.95);
+}
+
+/* --- NEW: Hover/Focus effect for sprite --- */
+.character:hover, .character:focus, #femboy-character:hover, #femboy-character-2:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 16px 4px var(--accent, #7f5af0), 0 4px 16px rgba(0,0,0,0.12);
+    outline: none;
+}
+
+/* --- NEW: +1 popup animation --- */
+.plus-one {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ff6fa1;
+    font-size: 1.5rem;
+    font-weight: bold;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 5;
+    top: 60px; /* Adjust as needed for best placement */
+}
+.plus-one.show {
+    animation: plusone-pop 0.6s forwards;
+}
+@keyframes plusone-pop {
+    0% { opacity: 1; top: 60px; }
+    70% { opacity: 1; top: 36px; }
+    100% { opacity: 0; top: 20px; }
 }
 
 .touch-count, #touch-count, #touch-count-2 {
